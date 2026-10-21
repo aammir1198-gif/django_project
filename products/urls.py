@@ -1,9 +1,9 @@
 from django.urls import path
 
-from products.views import show_products
+from products.views import Generic_Api
 
 urlpatterns = [
 
-    path('' , show_products),
+    path('' , Generic_Api.as_view()),
 
 ]

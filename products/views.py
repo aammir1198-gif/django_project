@@ -8,24 +8,14 @@ from products.forms import ProductFormModel
 
 from django.views.decorators.csrf import csrf_exempt
 
+from rest_framework import generics
+
+from products.serializer import Check_Serializer
+
 # Create your views here.
 
-@csrf_exempt
+class Generic_Api(generics.ListCreateAPIView):
 
-def show_products(request):
+    queryset = Products.objects.all()
 
-    if request.method == "GET":
-
-        return JsonResponse (list(Products.objects.all().values()) , safe=False)
-    
-    elif request.method == "POST":
-
-        form = ProductFormModel(request.POST)
-
-        if form.is_valid():
-
-            form.save()
-
-            return JsonResponse({'status' : 'its okey'})
-        
-        return JsonResponse({'status' : 'its not okey'})
+    serializer_class = Check_Serializer
