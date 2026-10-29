@@ -1,21 +1,11 @@
-from django.shortcuts import render
-
 from products.models import Products
-
-from django.http import JsonResponse
-
-from products.forms import ProductFormModel
-
-from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import generics
 
-from products.serializer import Check_Serializer
+from products.serializer import ProductSerializer
 
-# Create your views here.
-
-class Generic_Api(generics.ListCreateAPIView):
+class CreatAndShow(generics.ListCreateAPIView):
 
     queryset = Products.objects.all()
 
-    serializer_class = Check_Serializer
+    serializer_class = ProductSerializer
